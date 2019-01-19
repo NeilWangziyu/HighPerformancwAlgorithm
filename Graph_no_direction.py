@@ -5,15 +5,13 @@ class Graph():
         # 利用数字来表示定点
         self.V = V
         self.mat = {}
+        self.E = 0
         for i in range(V):
             self.mat[i] = []
 
         if Edges:
-            self.E = len(Edges)
             for each in Edges:
                 self.addEdge(each[0], each[1])
-        else:
-            self.E = 0
 
 
     def hasEdge(self, v, s):
@@ -145,6 +143,7 @@ class Graph():
                     DFS(each, list_tem+[str(x)])
                 if x != s:
                     res.append(list_tem+[str(x)])
+
         DFS(s, [])
         res_str = []
         for each in res:
