@@ -229,7 +229,6 @@ class EdgeWeightedBiGraph():
 #         无环加权有向图最短路径算法
 #           生成最短路径树
 #          s:start
-#           Not finished yet
         def relax(index):
             for each_next_edge in self.adj(index):
                 end_point = each_next_edge.end
@@ -275,6 +274,32 @@ class EdgeWeightedBiGraph():
         path.reverse()
         return path
 
+    def AcylicSP_longest(self, s):
+    #         无环加权有向图最长路径算法
+    #           生成最长路径树
+    #          s:start
+        def relax(index):
+            for each_next_edge in self.adj(index):
+                end_point = each_next_edge.end
+                if distTo[end_point] < distTo[index] + each_next_edge.weight:
+                    distTo[end_point] = distTo[index] + each_next_edge.weight
+                    edgeTo[end_point] = each_next_edge
+
+        if self.hasCycle():
+            raise ValueError("only in no cycle graph")
+
+
+        edgeTo = [None for _ in range(self.V)]
+        distTo = [-float('inf')for _ in range(self.V)]
+        distTo[s] = 0
+        top = self.Topological()
+
+        for each in top:
+            # each is the points
+            relax(each)
+        return edgeTo, distTo
+
+
 
 if __name__ == "__main__":
     Edges_cycle = [[4,5,0.35],[5,4,0.35],[4,7,0.37],[5,7,0.28],[7,5,0.28],[5,1,0.32],[0,4,0.38],[0,2,0.26],[7,3,0.39],[1,3,0.29],[2,7,0.34],[6,2,0.4],[3,6,0.52],
@@ -300,7 +325,12 @@ if __name__ == "__main__":
     print(G_no_cyc.AcylicSP(5))
     for i in range(G_no_cyc.V):
         print(G_no_cyc.PathTo_no_cycle(5, i))
+    print(G_no_cyc.AcylicSP_longest(5))
 
+
+    # -----
+    # 关键路径问题
+    
 
 
 
