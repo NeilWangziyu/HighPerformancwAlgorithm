@@ -92,7 +92,7 @@ class Digraph():
             # print(index, onStack, marked)
             for w in self.adj(index):
                 if onStack[w]:
-        #             print("find cycle")
+                    # print("find cycle")
                     res_Tem = []
                     x = index
                     while(x!=w):
@@ -119,13 +119,13 @@ class Digraph():
 
 
     def hasCycle(self):
-        return len(self.DirectedCycle())
+        "True: have cycle"
+        return len(self.DirectedCycle()) != 0
 
 
     def DepthFirstOrder(self):
 #         返回顶点排序
 #         利用DFS
-
         pre = []                #queue
         post = []               #queue
         reversePost = []        #stack
@@ -270,7 +270,7 @@ if __name__ == "__main__":
     # print(G_R.mat)
     print(G.DirectedDFS(0))
     # print(G.DirectedBFS(0))
-    # print(G.DirectedCycle())
+    print("cycle",G.DirectedCycle())
     print(G.hasCycle())
     # print(G.DepthFirstOrder())
     # print(G.pre())
@@ -280,6 +280,7 @@ if __name__ == "__main__":
     print(G.KosarajuSCC())
     print(G.StronglyConnected(0, 12))
     print(G.TransitiveClosure(6, 12))
+
 
 
 

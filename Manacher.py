@@ -29,3 +29,4 @@ def manacher(s):
 
 print(manacher("aaabaa"))
 
+print(manacher("abcdedcbcded"))

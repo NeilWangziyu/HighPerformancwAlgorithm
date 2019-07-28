@@ -4,7 +4,6 @@ class weightedEdge():
         self.end = end
         self.weight = weight
 
-
     def __repr__(self):
         return str(self.start)+'-'+str(self.end)+'('+str(self.weight)+')'
 
@@ -226,9 +225,9 @@ class EdgeWeightedBiGraph():
 
 
     def AcylicSP(self, s):
-#         无环加权有向图最短路径算法
-#           生成最短路径树
-#          s:start
+    #   无环加权有向图最短路径算法
+    #   生成最短路径树
+    #   s:start
         def relax(index):
             for each_next_edge in self.adj(index):
                 end_point = each_next_edge.end
@@ -329,8 +328,14 @@ if __name__ == "__main__":
 
 
     # -----
-    # 关键路径问题
-    
+    # 关键路径问题]
+    print("关键路径问题")
+    E_key_route = [[0, 1, 41], [0, 7, 41],  [0, 9, 41],  [1, 2, 51], [6, 8, 21], [6, 3, 21], [7, 3, 32], [7,8, 32], [8, 2, 32], [9, 4, 29],
+                   [9, 6, 29]]
+    G_key_route = EdgeWeightedBiGraph(10, E_key_route)
+    print(G_key_route.mat)
+
+    print(G_key_route.AcylicSP_longest(0))
 
 
 
